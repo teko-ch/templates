@@ -1,0 +1,278 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !BIB TS-program = biber
+
+\documentclass{beamer}
+\usepackage[cm-default,no-math]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage[utf8x]{inputenc}
+\usepackage{listings}
+\usepackage{hyperref} 
+\usepackage{adjustbox}
+\usepackage{tcolorbox}
+\usepackage{pdfpages}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage{pifont}
+\usepackage{color}
+\usepackage{qrcode}
+
+\usetheme{m} % Use metropolis theme
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\usepackage{listings}
+\lstset{language=Java,
+  frame=single,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  numbers=left,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  tabsize=4,
+  xleftmargin=8pt,
+  stringstyle=\color{pred},
+  basicstyle=\footnotesize\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\setbeamertemplate{itemize items}[square]
+\setbeamercovered{transparent}
+
+%% Commands
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\newcommand{\listing}[1]{
+	\begin{itemize}
+		\item[]\lstinputlisting[]{listings/#1}
+	\end{itemize}
+}
+
+\graphicspath{ {./images/} }
+\newcommand{\myfig}[2]{
+	\begin{minipage}[c]{\textwidth}
+		\begin{center}
+			\includegraphics[keepaspectratio,width=#2\textwidth]{#1}
+		\end{center}
+		\vspace{3mm}
+	\end{minipage}
+}
+
+\newcommand{\bb}[1]{\textbf{#1}}
+
+\newcommand{\slideItems}[1]{
+	\begin{itemize}
+		#1
+	\end{itemize}
+}
+
+\newcommand{\slide}[2]{
+	\begin{frame}{#1}
+		#2
+	\end{frame}
+}
+
+%% Document
+
+\title{Course Title}
+\subtitle{Subtitle of presentation}
+\author{\href{http://www.teko.ch/}{Your Name}}
+\institute[TEKO]{\href{http://www.teko.ch/}{TEKO Schweizerische Fachschule}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newlength\someheight
+
+\slide{Agenda}{
+	\setcounter{tocdepth}{1}
+	\tableofcontents
+}
+
+\section{Lists}
+
+\slide{Simple List}{
+	\slideItems{
+		\item This is item 1
+		\item This is item 2
+		\item This is item 3
+		\item This is item 4
+		\item This is item 5
+	}
+}
+
+\slide{Nested List}{
+	\slideItems{
+		\item This is item 1
+		\item This is item 2
+		\item This is item 3
+			\slideItems{
+				\item This is item 3.1
+				\item This is item 3.2
+				\item This is item 3.3
+			}
+		\item This is item 4
+			\slideItems{
+				\item This is item 4.1
+				\item This is item 4.2
+			}
+	}
+}
+
+\section{Links}
+
+\slide{Clickable URL}{
+	You can find the TEKO website here: \url{http://www.teko.ch/}
+}
+
+\slide{Clickable Text}{
+	You should go to the \href{http://www.teko.ch/}{TEKO website} and check for courses!
+}
+
+\section{Text Size}
+
+\slide{Define font size for one or more words}{
+	\tiny{tiny}
+	\scriptsize{scriptsize}
+	\footnotesize{footnotesize}
+	\small{small}
+	\normalsize{normalsize} \\
+	\large{large}
+	\Large{Large}
+	\LARGE{LARGE}
+	\huge{huge}
+	\Huge{Huge}
+}
+
+\slide{Define font size for a block}{
+	\begin{LARGE}
+		This block is in a large font.
+	\end{LARGE}
+}
+
+\section{Images}
+
+\slide{Image}{
+	\myfig{cat.jpg}{1}
+	\tiny{\href{https://www.flickr.com/photos/pagedooley/3372925208}{Image by Kevin Dooley}}
+}
+
+\section{Code}
+
+\slide{Inline Code}{
+	\slideItems{
+		\item This is \code{item} 1
+		\item This is \code{item} 2
+		\item This is \code{item} 3
+		\item This is \code{item} 4
+		\item This is \code{item} 5
+	}
+}
+
+\slide{Import Listing}{
+	\listing{Listing.java}
+}
+
+\section{Tables}
+
+\slide{Simple Table}{
+	\begin{center}
+		\begin{tabular}{ l || c | c | c | c | c }
+			& 1 & 2 & 3 & 4 & 5 \\
+			\hline
+			\hline
+			A & A1 & A2 & A3 & A4 & A5 \\
+			B & B1 & B2 & B3 & B4 & B5 \\
+			C & C1 & C2 & C3 & C4 & C5 \\
+			D & D1 & D2 & D3 & D4 & D5 \\
+			E & E1 & E2 & E3 & E4 & E5 \\
+			\hline
+			\hline
+		\end{tabular}
+	\end{center}
+}
+
+\section{Symbols}
+
+\slide{Using Zapf Dingbats}{
+	\ding{33} \ding{34} \ding{35} \ding{36} \ding{37} \ding{38} \ding{39}
+	\ding{40} \ding{41} \ding{42} \ding{43} \ding{44} \ding{45} \ding{46} \ding{47} \ding{48} \ding{49}
+	\ding{50} \ding{51} \ding{52} \ding{53} \ding{54} \ding{55} \ding{56} \ding{57} \ding{58} \ding{59}
+	\ding{60} \ding{61} \ding{62} \ding{63} \ding{64} \ding{65} \ding{66} \ding{67} \ding{68} \ding{69}
+	\ding{70} \ding{71} \ding{72} \ding{73} \ding{74} \ding{75} \ding{76} \ding{77} \ding{78} \ding{79}
+	\ding{80} \ding{81} \ding{82} \ding{83} \ding{84} \ding{85} \ding{86} \ding{87} \ding{88} \ding{89}
+	\ding{90} \ding{91} \ding{92} \ding{93} \ding{94} \ding{95} \ding{96} \ding{97} \ding{98} \ding{99}
+	
+	For more symbols look here: \url{https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf}
+}
+
+\section{Colors}
+
+\slide{Colors}{
+	\textcolor{green}{This text is green.} \\
+	\textcolor{yellow}{This text is yellow.} \\
+	\textcolor{red}{This text is red.}
+}
+
+\section{Columns}
+
+\slide{Two Columns (50/50)}{
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\myfig{cat.jpg}{1}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			Two columns (50/50) with an image on the left side and a text on the right side.
+		\end{column}
+	\end{columns}
+	\tiny{\href{https://www.flickr.com/photos/pagedooley/3372925208}{Image by Kevin Dooley}}
+}
+
+\slide{Two Columns (70/30)}{
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			\myfig{cat.jpg}{1}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			Two columns (70/30) with an image on the left side and a text on the right side.
+		\end{column}
+	\end{columns}
+	\tiny{\href{https://www.flickr.com/photos/pagedooley/3372925208}{Image by Kevin Dooley}}
+}
+
+\slide{Three Columns (20/50/30)}{
+	\begin{columns}
+		\begin{column}{0.2\textwidth}
+			\myfig{cat.jpg}{1}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			Three columns (20/50/30) with an image on the left side, a text in the middle and an image on the right side.
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\myfig{cat.jpg}{1}
+		\end{column}
+	\end{columns}
+	\tiny{\href{https://www.flickr.com/photos/pagedooley/3372925208}{Image by Kevin Dooley}}
+}
+
+\section{QR-Code}
+
+\slide{QR-Code}{
+	\begin{center}
+		\qrcode[hyperlink,height=5cm]{http://www.teko.ch/}
+	\end{center}
+}
+
+\end{document}
